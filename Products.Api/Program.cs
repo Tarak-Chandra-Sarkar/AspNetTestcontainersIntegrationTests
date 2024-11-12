@@ -10,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddCors();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Database")));
@@ -57,6 +58,7 @@ app.MapDelete("api/products/{productId}", async (Guid productId, ISender sender)
 });
 
 app.UseHttpsRedirection();
+app.UseCors();
 
 app.Run();
 
